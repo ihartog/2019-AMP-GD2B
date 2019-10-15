@@ -10,8 +10,13 @@ canvas.height = height;
 
 let A = new Point(new Vector2d(200,200),20,true,"yellow");
 let B = new Point(new Vector2d(800,300),20,true,"blue");
+let C = new Point(new Vector2d(400,500),20,true,"red");
 
-let C = new Point(new Vector2d(400,500),20,true,"red")
+let S = new Point(0,0,10,"white");
+
+A.drag();
+B.drag();
+C.drag();
 
 let l = new LinearFunction(1,1);
 let m = new LinearFunction(1,1);
@@ -25,12 +30,16 @@ function animate(){
 
 
   m.slope = -1/l.slope;
+  m.intercept = C.dy - m.slope*C.dx;
+  m.draw(context);
 
   m.draw(context);
 
   A.draw(context);
   B.draw(context);
   C.draw(context);
+
+  S.draw(context);
 
 }
 
