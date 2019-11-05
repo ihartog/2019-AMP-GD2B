@@ -1,0 +1,12 @@
+body{
+    margin:0;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+canvas{
+    background-image: url("img/street.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
