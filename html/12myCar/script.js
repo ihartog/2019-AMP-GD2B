@@ -18,9 +18,11 @@ wheelBack.src = "img/wheel.png";
 
 wheelFront.pos = new Vector2d(0,0);
 wheelBack.pos = new Vector2d(0,0);
+wheelFront.rotation = 0;
+wheelBack.rotation = 0;
 
 car.pos = new Vector2d(0, 0);
-car.vel = new Vector2d(10, 0);
+car.vel = new Vector2d(9, 0);
 
 car.addEventListener('load',()=>{
 
@@ -37,12 +39,33 @@ function animate()
   context.drawImage(car, car.pos.dx, car.pos.dy);
   wheelFront.pos.dx = car.pos.dx;
   wheelFront.pos.dy = car.pos.dy;
+
   wheelBack.pos.dx = car.pos.dx;
   wheelBack.pos.dy = car.pos.dy;
+
   wheelFront.pos.Add(new Vector2d(673 + 80,120 + 80));
   wheelBack.pos.Add(new Vector2d(133 + 80,120 + 80));
-  context.drawImage(wheelFront, wheelFront.pos.dx - 80 , wheelFront.pos.dy - 80);
-  context.drawImage(wheelBack, wheelBack.pos.dx - 80, wheelBack.pos.dy - 80);
+
+  wheelFront.rotation += car.vel.dx / 80;
+  wheelBack.rotation += car.vel.dx / 80;
+
+
+  context.save();
+  context.translate(wheelFront.pos.dx, wheelFront.pos.dy);
+  context.rotate(wheelFront.rotation);
+
+  context.drawImage(wheelFront, -80 , -80);
+
+  context.restore();
+
+  context.save();
+  context.translate(wheelBack.pos.dx, wheelBack.pos.dy);
+  context.rotate(wheelBack.rotation);
+
+  context.drawImage(wheelBack, - 80, - 80);
+
+  context.restore();
+
   Clamp();
 }
 
