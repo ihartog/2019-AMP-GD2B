@@ -14,7 +14,7 @@ let ab = new LinearFunction(0,0);
 
 let point = new DPoint(new Vector2d(200,300),new Vector2d(0,0),new Vector2d(0,0),10,"white");
 
-let toB = false;
+let toB = true;
 
 function animate(){
   requestAnimationFrame(animate);
@@ -31,14 +31,14 @@ function animate(){
   console.log(point.vel.magnitude);
   }
 
-  if (point.vel.magnitude < 1) {
-  //  toB = false;
-  }
-
   else {
     point.vel.differenceVector(A.position, point.pos);
   }
 
+  if (point.vel.magnitude < 10) {
+      toB = !toB;
+  }
+  
   point.vel.scalarMul(0.01);
   point.Update();
 
